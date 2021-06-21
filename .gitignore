@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/NetCoreBattleship/NetCoreBattleship/obj
+/NetCoreBattleship/NetCoreBattleship/bin/Debug/netcoreapp3.1
