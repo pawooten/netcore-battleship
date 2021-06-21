@@ -6,7 +6,7 @@ namespace Battleship
 {
     public static class ExtensionMethods
     {
-        public static string GetDefaultName(this PlayerType playerType)
+        public static string ToPlayerLabel(this PlayerType playerType)
         {
             return playerType switch
             {

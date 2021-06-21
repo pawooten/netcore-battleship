@@ -10,11 +10,21 @@ namespace Battleship
     /// </summary>
     public class PlayerGameBoard
     {
-        private string _playerName;
-        private PlayerType _playerType;
+        public string PlayerName
+        {
+            get;
+            private set;
+        }
+        public PlayerType PlayerType
+        {
+            get;
+            private set;
+        }
         private int _boardSize;
 
         private CellStateType[,] _gameBoardCells;
+
+        public CellStateType this[int row, int column] => _gameBoardCells[row, column];
 
         /// <summary>
         /// Instantiates a new game board 
@@ -28,7 +38,7 @@ namespace Battleship
             try
             {
                 ArgumentValidator.ValidatePlayerType( playerType );
-                _playerType = playerType;
+                PlayerType = playerType;
             }
             catch ( ArgumentException innerException )
             {
@@ -46,11 +56,11 @@ namespace Battleship
             try
             {
                 ArgumentValidator.ValidatePlayerName( playerName );
-                _playerName = playerName;
+                PlayerName = playerName;
             }
             catch (ArgumentException)
             {
-                _playerName = DefaultSettings.GetDefaultNameForPlayerType( playerType );
+                PlayerName = DefaultSettings.GetDefaultNameForPlayerType( playerType );
             }
 
             _gameBoardCells = initializeEmptyGameBoardCells();

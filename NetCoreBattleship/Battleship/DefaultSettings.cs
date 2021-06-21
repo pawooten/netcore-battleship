@@ -18,7 +18,7 @@ namespace Battleship
         /// <returns></returns>
         public static string GetDefaultNameForPlayerType(PlayerType playerType)
         {
-            return playerType.GetDefaultName();
+            return playerType.ToPlayerLabel();
         }
     }
 }
