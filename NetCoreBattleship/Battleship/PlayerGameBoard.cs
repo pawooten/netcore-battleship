@@ -8,7 +8,7 @@ namespace Battleship
     /// Represents each player's game board, in which they position their ships, and their opponent selects coordinates
     /// to attack.
     /// </summary>
-    public class PlayerGameBoard
+    public sealed class PlayerGameBoard
     {
         public string PlayerName
         {
@@ -20,7 +20,11 @@ namespace Battleship
             get;
             private set;
         }
-        private int _boardSize;
+        public int BoardSize
+        {
+            get;
+            private set;
+        }
 
         private CellStateType[,] _gameBoardCells;
 
@@ -47,11 +51,11 @@ namespace Battleship
             try
             {
                 ArgumentValidator.ValidateGameBoardSize( boardSize );
-                _boardSize = boardSize;
+                BoardSize = boardSize;
             }
             catch (ArgumentException)
             {
-                _boardSize = DefaultSettings.DEFAULT_BOARD_SIZE;
+                BoardSize = DefaultSettings.DEFAULT_BOARD_SIZE;
             }
             try
             {
@@ -68,10 +72,10 @@ namespace Battleship
 
         private CellStateType[,] initializeEmptyGameBoardCells()
         {
-            var cells = new CellStateType[_boardSize, _boardSize];
-            for (int row = 0; row < _boardSize; row++)
+            var cells = new CellStateType[BoardSize, BoardSize];
+            for (int row = 0; row < BoardSize; row++)
             {
-                for (int column = 0; column < _boardSize; column++)
+                for (int column = 0; column < BoardSize; column++)
                 {
                     cells[row, column] = CellStateType.Empty;
                 }

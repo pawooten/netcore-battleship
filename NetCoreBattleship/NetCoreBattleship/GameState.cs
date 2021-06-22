@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetCoreBattleship
 {
-    public class GameState
+    public sealed class GameState
     {
         /// <summary>
         /// The name of the player
@@ -26,12 +26,33 @@ namespace NetCoreBattleship
             private set;
         }
 
+        public int BoardSize
+        {
+            get;
+            private set;
+        }
+
+        public CellStateType[,] Board
+        {
+            get;
+            private set;
+        }
+
         public static GameState FromPlayerGameBoard(PlayerGameBoard gameBoard )
         {
             GameState gameState = new GameState();
             gameState.Name = gameBoard.PlayerName;
             gameState.Label = gameBoard.PlayerType.ToPlayerLabel();
-
+            var board = new CellStateType[gameBoard.BoardSize, gameBoard.BoardSize];
+            for (int row = 0; row < gameBoard.BoardSize; row++)
+            {
+                for (int column = 0; column < gameBoard.BoardSize; column++ )
+                {
+                    board[row, column] = gameBoard[row, column];
+                }
+            }
+            gameState.BoardSize = gameBoard.BoardSize;
+            gameState.Board = board;
             return gameState;
         }
     }

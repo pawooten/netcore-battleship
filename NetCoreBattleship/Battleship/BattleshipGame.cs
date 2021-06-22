@@ -2,7 +2,7 @@
 
 namespace Battleship
 {
-    public class BattleshipGame
+    public sealed class BattleshipGame
     {
     }
 }
